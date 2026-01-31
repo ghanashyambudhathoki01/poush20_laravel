@@ -1,56 +1,30 @@
 <?php
 
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\PageController;
 use App\Models\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-})->name("home");
+Route::get('/', [PageController::class, "home"])->name("home");
 
-Route::get("/about", function () {
-    return view("about");
-})->name("about");
+Route::get("/about", [PageController::class, "about"])->name("about");
 
-Route::get("/services", function () {
-    return view("service");
-})->name("service");
+Route::get("/services", [PageController::class, "service"])->name("service");
 
-Route::get("/contact", function () {
-    return view("contact");
-})->name("contact");
+Route::get("/contact", [PageController::class, "contact"])->name("contact");
 
 // Course Routes
-Route::get("/course/list", function () {
-    $courses = Course::all();
-    return view("course.list", compact('courses'));
-})->name("course_list");
-
-Route::get("/course/create", function () {
-    return view("course.create");
-})->name("course_create");
-
-Route::get("/course/edit", function () {
-    return view("course.edit");
-})->name("course_edit");
-
-
-Route::post("/course/store", function (Request $request) {
-    // return $request;
-    $course = new Course();
-    $course->name = $request->name;
-    $course->price = $request->price;
-    $course->duration = $request->duration;
-    $course->description = $request->description;
-    $course->save();
-    toast("Course created successfully!", "success");
-    return redirect()->route('course_create');
-})->name("course_store");
-
+Route::get("/course/list", [CourseController::class, 'list'])->name("course_list");
+Route::get("/course/create", [CourseController::class, "create"])->name("course_create");
+Route::post("/course/store", [CourseController::class, "store"])->name("course_store");
+Route::get("/course/edit/{id}", [CourseController::class, "edit"])->name('course_edit');
+Route::patch("/course/update/{id}", [CourseController::class, "update"])->name("course_update");
+Route::delete("/course/delete/{id}", [CourseController::class, "delete"])->name('course_delete');
 
 // Get, Post let name = "sudam", $name = "sudam"
 // HTTP Methods
 // Get - read
 // Post - create , save, store
-// Put | Patch
-// Delete
+// Put | Patch -update
+// Delete - delete
