@@ -1,7 +1,7 @@
 This is a simple laravel project where i am learning pharse of laravel 
 with full stack development 
 
-In this project you can except the three nav bar :
+In this project you can except the four nav bar :
 1) Home 
 2) About 
 3) Service 
