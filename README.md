@@ -8,4 +8,5 @@ In this project you can except the three nav bar :
 4) Course 
 And this project store a data of course enrollment of phpmyadmin and maybe 
 i add more features in future 
-Wanna say hii to me email at : ghanashyambudhathoki03@gmail.com
+Wanna say hii to me email at : 
+ghanashyambudhathoki03@gmail.com
