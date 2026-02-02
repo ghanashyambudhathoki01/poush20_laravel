@@ -13,7 +13,8 @@ class AdmissionController extends Controller
      */
     public function index()
     {
-        return view('admission.list');
+        $admissions = Admission::all();
+        return view('admission.list', compact('admissions'));
     }
 
     /**
@@ -31,6 +32,14 @@ class AdmissionController extends Controller
     public function store(Request $request)
     {
         // return $request;
+
+        $request->validate([
+            "name" => "required|max:55",
+            "email" => "required|email|unique:admissions",
+            "phone" => "required|digits:10",
+            "course" => "required|exists:courses,id",
+        ]);
+
         $admission = new Admission();
         $admission->name = $request->name;
         $admission->email = $request->email;
@@ -54,7 +63,9 @@ class AdmissionController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $admission = Admission::find($id);
+        $courses = Course::all();
+        return view('admission.edit', compact("admission", "courses"));
     }
 
     /**
@@ -62,7 +73,20 @@ class AdmissionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            "name" => "required|max:55",
+            "email" => "required|email|unique:admissions,email,$id",
+            "phone" => "required|digits:10",
+            "course" => "required|exists:courses,id",
+        ]);
+        $admission = Admission::find($id);
+        $admission->name = $request->name;
+        $admission->email = $request->email;
+        $admission->phone = $request->phone;
+        $admission->course_id = $request->course;
+        $admission->save();
+        toast("Admission updated successfully!", "success");
+        return redirect()->route('admission.index');
     }
 
     /**
@@ -70,6 +94,9 @@ class AdmissionController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $admission = Admission::find($id);
+        $admission->delete();
+        toast("Admission deleted successfully!", "success");
+        return redirect()->route('admission.index');
     }
 }

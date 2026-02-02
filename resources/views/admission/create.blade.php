@@ -20,27 +20,51 @@
                             <label for="course">Select Course</label>
                             <select name="course" id="course" class="border border-gray-300 w-full px-2 py-1">
                                 @foreach ($courses as $course)
-                                    <option value="{{ $course->id }}">{{ $course->name }}</option>
+                                    <option value="{{ $course->id }}"
+                                        {{ old('course') == $course->id ? 'selected' : '' }}>
+                                        {{ $course->name }}
+                                    </option>
                                 @endforeach
                             </select>
+                            @error('course')
+                                <div class="text-[red] text-sm">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <div>
                             <label for="name">Name</label>
                             <input type="text" name="name" id="name"
-                                class="border border-gray-300 w-full px-2 py-1" placeholder="Your Name">
+                                class="border border-gray-300 w-full px-2 py-1" placeholder="Your Name"
+                                value="{{ old('name') }}">
+                            @error('name')
+                                <div class="text-[red] text-sm">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <div>
                             <label for="email">Email</label>
                             <input type="email" name="email" id="email"
-                                class="border border-gray-300 w-full px-2 py-1">
+                                class="border border-gray-300 w-full px-2 py-1" value="{{ old('email') }}">
+                            @error('email')
+                                <div class="text-[red] text-sm">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <div>
                             <label for="phone">Phone</label>
                             <input type="tel" name="phone" id="phone"
-                                class="border border-gray-300 w-full px-2 py-1">
+                                class="border border-gray-300 w-full px-2 py-1" value="{{ old('phone') }}">
+                            @error('phone')
+                                <div class="text-[red] text-sm">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <div>

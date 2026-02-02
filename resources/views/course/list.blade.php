@@ -19,6 +19,7 @@
                         <th class="p-2 border border-gray-400">Name</th>
                         <th class="p-2 border border-gray-400">Price</th>
                         <th class="p-2 border border-gray-400">Duration</th>
+                        <th class="p-2 border border-gray-400">Admission</th>
                         <th class="p-2 border border-gray-400">Action</th>
                     </tr>
                 </thead>
@@ -30,6 +31,7 @@
                             <td class="p-2 border border-gray-300">{{ $c->name }}</td>
                             <td class="p-2 border border-gray-300">Rs.{{ $c->price }}</td>
                             <td class="p-2 border border-gray-300">{{ $c->duration }}</td>
+                            <td class="p-2 border border-gray-300">{{ $c->admissions->count() }}</td>
                             <td class="p-2 border border-gray-300 flex items-center gap-1 justify-center">
                                 <a href="{{ route('course_edit', $c->id) }}" class="border px-4 py-1 rounded">
                                     Edit
