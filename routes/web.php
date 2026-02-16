@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdmissionController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\PageController;
 use App\Models\Course;
@@ -21,6 +22,10 @@ Route::post("/course/store", [CourseController::class, "store"])->name("course_s
 Route::get("/course/edit/{id}", [CourseController::class, "edit"])->name('course_edit');
 Route::patch("/course/update/{id}", [CourseController::class, "update"])->name("course_update");
 Route::delete("/course/delete/{id}", [CourseController::class, "delete"])->name('course_delete');
+
+
+// Admission Route
+Route::resource("/admission", AdmissionController::class)->names('admission');
 
 // Get, Post let name = "sudam", $name = "sudam"
 // HTTP Methods

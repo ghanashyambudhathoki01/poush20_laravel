@@ -9,6 +9,7 @@
             <a href="{{ route('home') }}" class="{{ Request::routeIs('home') ? 'text-[red]' : '' }} ">Home</a>
             <a href="{{ route('about') }}" class="{{ Request::routeIs('about') ? 'text-[red]' : '' }} ">About</a>
             <a href="{{ route('service') }}" class="{{ Request::routeIs('service') ? 'text-[red]' : '' }} ">Service</a>
+            <a href="{{ route('admission.index') }}" class="{{ Request::routeIs('admission*') ? 'text-[red]' : '' }} ">Admission</a>
 
             <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown"
                 type="button" class="flex items-end {{ Request::routeIs('course_*') ? 'text-[red]' : '' }} ">
